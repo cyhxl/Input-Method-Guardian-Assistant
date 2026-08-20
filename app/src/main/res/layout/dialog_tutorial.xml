@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- 标签切换按钮 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/btn_tab_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="打开通知权限"
+            android:padding="8dp"
+            android:backgroundTint="#1A73E8"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btn_tab_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="切换输入法"
+            android:padding="8dp"
+            android:backgroundTint="#34A853"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- 内容区域 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="350dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_tutorial_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="6dp"
+            android:background="#F1F3F4"
+            android:padding="16dp"/>
+    </ScrollView>
+
+    <!-- 只保留返回按钮 -->
+    <Button
+        android:id="@+id/btn_tutorial_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:enabled="false"
+        android:backgroundTint="#1A73E8"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"/>
+</LinearLayout>

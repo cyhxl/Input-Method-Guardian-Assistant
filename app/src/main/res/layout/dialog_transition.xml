@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tv_transition_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="您已阅读教程，现在可以前往开启通知权限。\n点击「去开启」将跳转应用详情设置，稍后返回在此窗口点击「稍后」。\n点击「稍后」直接选择要守护的输入法。"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"/>
+</LinearLayout>
