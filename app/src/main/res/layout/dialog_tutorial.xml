@@ -52,7 +52,7 @@
             android:padding="16dp"/>
     </ScrollView>
 
-    <!-- 只保留返回按钮 -->
+    <!-- 返回按钮（蓝色） -->
     <Button
         android:id="@+id/btn_tutorial_back"
         android:layout_width="match_parent"
