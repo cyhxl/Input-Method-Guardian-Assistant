@@ -42,7 +42,9 @@
                 android:textSize="16sp"
                 android:textColor="#333333"
                 android:layout_gravity="center"
-                android:layout_marginBottom="8dp"/>
+                android:layout_marginBottom="8dp"
+                android:maxLines="3"
+                android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/tv_current_ime"
@@ -52,7 +54,9 @@
                 android:textSize="16sp"
                 android:textColor="#666666"
                 android:layout_gravity="center"
-                android:layout_marginBottom="24dp"/>
+                android:layout_marginBottom="24dp"
+                android:maxLines="3"
+                android:ellipsize="end"/>
 
             <View
                 android:layout_width="match_parent"
@@ -93,11 +97,12 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="14dp"/>
 
+            <!-- 改为“打开权限” -->
             <Button
-                android:id="@+id/btn_notification_permission"
+                android:id="@+id/btn_permission"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="打开通知权限"
+                android:text="打开权限"
                 android:padding="14dp"
                 android:backgroundTint="#FBBC04"
                 android:textColor="#333333"
@@ -116,7 +121,6 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="14dp"/>
 
-            <!-- 新增：可识别守护的输入法按钮 -->
             <Button
                 android:id="@+id/btn_recognizable_ime"
                 android:layout_width="wrap_content"
