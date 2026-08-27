@@ -116,10 +116,9 @@ class MainActivity : Activity() {
         val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val tutorialRead = prefs.getBoolean(KEY_TUTORIAL_READ, false)
 
-        // 控制“可能无法弹出通知”的显示
+        // 非首次启动时，检测后台弹出权限引导（避免重复）
         if (tutorialRead) {
             if (isNotificationPermissionGranted()) {
-                // 检查是否已经显示过任何引导
                 val overlayGuideShown = prefs.getBoolean("overlay_guide_shown", false)
                 if (!overlayGuideShown) {
                     // 如果权限未开启，弹出“可能无法弹出通知”
@@ -131,12 +130,14 @@ class MainActivity : Activity() {
             }
         }
 
-        // 通知权限状态变化引导（首次开启通知）
+        // 通知权限首次开启后的引导（只出现一次）
         val prevGranted = prefs.getBoolean(KEY_NOTIFICATION_PERMISSION_PREV, false)
         val currentGranted = isNotificationPermissionGranted()
         if (currentGranted && !prevGranted) {
             prefs.edit().putBoolean(KEY_NOTIFICATION_PERMISSION_PREV, true).apply()
+            // 显示“首次允许后台弹出”引导，同时标记已显示
             showNotificationPermissionGrantedDialog()
+            prefs.edit().putBoolean("overlay_guide_shown", true).apply()
         }
         if (prevGranted != currentGranted) {
             prefs.edit().putBoolean(KEY_NOTIFICATION_PERMISSION_PREV, currentGranted).apply()
@@ -164,7 +165,7 @@ class MainActivity : Activity() {
         }
         btnOverlay.setOnClickListener {
             dialog.dismiss()
-            requestOverlayPermission()  // 调用权限授权对话框
+            requestOverlayPermission()  // 触发权限授权对话框
         }
         btnQuery.setOnClickListener {
             dialog.dismiss()
@@ -174,14 +175,14 @@ class MainActivity : Activity() {
         dialog.show()
     }
 
-    // ========== 请求“允许后台弹出”权限（权限授权对话框） ==========
+    // ========== 请求允许后台弹出（权限授权对话框） ==========
     private fun requestOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Settings.canDrawOverlays(this)) {
                 Toast.makeText(this, "权限已开启", Toast.LENGTH_SHORT).show()
                 return
             }
-            // 请求悬浮窗权限，系统会弹出权限授权对话框
+            // 请求 SYSTEM_ALERT_WINDOW 权限，系统会弹出原生授权对话框
             requestPermissions(
                 arrayOf(android.Manifest.permission.SYSTEM_ALERT_WINDOW),
                 REQUEST_CODE_OVERLAY
@@ -198,7 +199,7 @@ class MainActivity : Activity() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "✅ 已开启「允许后台弹出」权限", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "权限被拒绝", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "权限被拒绝，部分功能可能受影响", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -210,7 +211,7 @@ class MainActivity : Activity() {
         startActivity(intent)
     }
 
-    // ========== 后台弹出权限引导 ==========
+    // ========== 可能无法弹出通知引导 ==========
     private fun showOverlayPermissionPrompt() {
         AlertDialog.Builder(this)
             .setTitle("可能无法弹出通知")
@@ -225,10 +226,6 @@ class MainActivity : Activity() {
 
     // ========== 首次开启通知后的引导 ==========
     private fun showNotificationPermissionGrantedDialog() {
-        // 标记已显示引导，避免重复弹窗
-        getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            .edit().putBoolean("overlay_guide_shown", true).apply()
-
         AlertDialog.Builder(this)
             .setTitle("通知权限已开启")
             .setMessage("通知权限已开启，为了确保本工具能正常通知您，请继续开启「允许后台弹出」权限。")

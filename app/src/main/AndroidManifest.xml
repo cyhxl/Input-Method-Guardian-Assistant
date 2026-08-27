@@ -4,8 +4,8 @@
     package="com.example.app">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- 声明 vivo 后台弹出权限，用于触发权限授权对话框 -->
-    <uses-permission android:name="com.vivo.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 声明 SYSTEM_ALERT_WINDOW 权限，用于触发权限授权对话框 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <queries>
         <package android:name="com.sohu.inputmethod.sogou" />
