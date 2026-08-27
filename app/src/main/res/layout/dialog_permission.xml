@@ -27,12 +27,22 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🔄 允许后台弹出：用于在后台弹出提醒界面（参考微信做法）。"
+        android:text="🔄 允许后台弹出：用于在后台弹出通知横幅/锁屏提醒。"
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:gravity="start"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📋 获取输入法列表：用于检测所有已安装输入法。"
         android:textSize="14sp"
         android:textColor="#555555"
         android:gravity="start"
         android:layout_marginBottom="24dp"/>
 
+    <!-- 第一行：通知和后台弹出 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,38 +50,64 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btn_permission_return"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="返回"
-            android:backgroundTint="#9E9E9E"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginEnd="8dp"/>
-
-        <Button
             android:id="@+id/btn_permission_notification"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="打开通知"
+            android:text="打开或关闭通知"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:backgroundTint="#1A73E8"
             android:textColor="#FFFFFF"
             android:padding="12dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="6dp"/>
 
         <Button
             android:id="@+id/btn_permission_overlay"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="打开后台弹出"
+            android:text="打开或关闭后台弹出"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:backgroundTint="#34A853"
             android:textColor="#FFFFFF"
             android:padding="12dp"
-            android:layout_marginStart="8dp"/>
-
+            android:layout_marginStart="6dp"/>
     </LinearLayout>
+
+    <!-- 第二行：获取输入法列表权限 和 返回 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp">
+
+        <Button
+            android:id="@+id/btn_permission_query_packages"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="获取输入法列表权限"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:backgroundTint="#FF9800"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginEnd="6dp"/>
+
+        <Button
+            android:id="@+id/btn_permission_return"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="返回"
+            android:singleLine="true"
+            android:backgroundTint="#9E9E9E"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+
 </LinearLayout>

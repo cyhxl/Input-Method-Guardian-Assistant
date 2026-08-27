@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.app">
 
-    <!-- 通知权限（Android 13+ 需要） -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 声明 vivo 后台弹出权限，用于触发权限授权对话框 -->
+    <uses-permission android:name="com.vivo.permission.SYSTEM_ALERT_WINDOW" />
+
+    <queries>
+        <package android:name="com.sohu.inputmethod.sogou" />
+        <package android:name="com.baidu.input" />
+        <package android:name="com.iflytek.inputmethod" />
+        <package android:name="com.google.android.inputmethod.latin" />
+        <package android:name="com.google.android.apps.inputmethod.latin" />
+        <package android:name="com.monet.inputmethod.hyer" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -13,7 +23,6 @@
         android:supportsRtl="true"
         tools:targetApi="31">
 
-        <!-- 主界面 Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -23,7 +32,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 广播接收器：监听输入法切换事件 -->
         <receiver
             android:name=".InputMethodChangeReceiver"
             android:exported="true">

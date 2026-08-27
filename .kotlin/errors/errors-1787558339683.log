@@ -1,0 +1,48 @@
+kotlin version: 2.2.10
+error message: Incremental compilation failed: Failed to close caches
+org.jetbrains.kotlin.incremental.CachesManagerCloseException: Failed to close caches
+	at org.jetbrains.kotlin.incremental.BaseCompilationTransaction.closeCachesManager(CompilationTransaction.kt:126)
+	at org.jetbrains.kotlin.incremental.RecoverableCompilationTransaction.close(CompilationTransaction.kt:251)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:740)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:124)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:679)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:93)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1806)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+	Suppressed: java.nio.file.NoSuchFileException: C:\Users\Administrator\AppData\Local\Temp\kotlin-backups6199906072094591996\5.backup
+		at java.base/sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+		at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+		at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+		at java.base/sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+		at java.base/sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+		at java.base/java.nio.file.Files.move(Unknown Source)
+		at org.jetbrains.kotlin.incremental.RecoverableCompilationTransaction.revertChanges(CompilationTransaction.kt:231)
+		at org.jetbrains.kotlin.incremental.RecoverableCompilationTransaction.close(CompilationTransaction.kt:256)
+		... 15 more
+Caused by: java.nio.file.NoSuchFileException: E:\app\app\build\kotlin\compileDebugKotlin\cacheable\caches-jvm\lookups\counters.tab -> C:\Users\Administrator\AppData\Local\Temp\kotlin-backups6199906072094591996\5.backup
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(Unknown Source)
+	at java.base/sun.nio.fs.WindowsFileCopy.move(Unknown Source)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.move(Unknown Source)
+	at java.base/java.nio.file.Files.move(Unknown Source)
+	at org.jetbrains.kotlin.incremental.RecoverableCompilationTransaction.stashFile(CompilationTransaction.kt:210)
+	at org.jetbrains.kotlin.incremental.RecoverableCompilationTransaction.registerAddedOrChangedFile(CompilationTransaction.kt:181)
+	at org.jetbrains.kotlin.incremental.CompilationTransactionKt.write(CompilationTransaction.kt:55)
+	at org.jetbrains.kotlin.incremental.CompilationTransactionKt.writeBytes(CompilationTransaction.kt:64)
+	at org.jetbrains.kotlin.incremental.CompilationTransactionKt.writeText(CompilationTransaction.kt:60)
+	at org.jetbrains.kotlin.incremental.LookupStorage.close(LookupStorage.kt:151)
+	at org.jetbrains.kotlin.com.google.common.io.Closer.close(Closer.java:205)
+	at org.jetbrains.kotlin.incremental.IncrementalCachesManager.close(IncrementalCachesManager.kt:55)
+	at org.jetbrains.kotlin.incremental.BaseCompilationTransaction.closeCachesManager(CompilationTransaction.kt:123)
+	... 16 more
+
+
